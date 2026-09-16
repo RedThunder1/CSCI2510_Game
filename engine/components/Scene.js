@@ -23,4 +23,8 @@ class Scene {
         }
     }
 
+    destroy(gameObject) {
+        this.gameObjects.splice(this.gameObjects.indexOf(gameObject), 1);
+    }
+
 }

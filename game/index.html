@@ -1,33 +1,40 @@
-<html>
-<head>
-    <title>Game!</title>
-    <style>
-        * {
-            margin: 0;
-            overflow: hidden;
-        }
-    </style>
-</head>
-<body>
-<canvas id="canv">
-
-</canvas>
-<script src="../engine/components/Vector2.js"></script>
-<script src="../engine/Input.js"></script>
-<script src="../engine/Engine.js"></script>
-<script src="../engine/components/Component.js"></script>
-<script src="../engine/components/GameObject.js"></script>
-<script src="../engine/components/Scene.js"></script>
-
-<script src="MainScene.js"></script>
-<script src="MainGameObject.js"></script>
-<script src="DrawComponent.js"></script>
-<script src="UpdateComponent.js"></script>
-<script src="Player.js"></script>
-
-<script>
-    Engine.currentScene = new MainScene();
-    Engine.start();
-</script>
-</body>
+<html lang="en">
+    <head>
+        <title>Game!</title>
+        <style>
+            * {
+                margin: 0;
+                overflow: hidden;
+            }
+        </style>
+    </head>
+    <body>
+        <canvas id="canv">
+        
+        </canvas>
+        <script src="../engine/Colliders/Collider.js"></script>
+        <script src="../engine/Colliders/BoxCollider.js"></script>
+        <script src="../engine/components/Vector2.js"></script>
+        <script src="../engine/components/Component.js"></script>
+        <script src="../engine/components/GameObject.js"></script>
+        <script src="../engine/components/Scene.js"></script>
+        <script src="../engine/components/Terrain.js"></script>
+        <script src="../engine/Input.js"></script>
+        <script src="../engine/Engine.js"></script>
+        <script src="../engine/Physics.js"></script>
+        <script src="MainScene.js"></script>
+        <script src="components/MainGameObject.js"></script>
+        <script src="components/DrawComponent.js"></script>
+        <script src="components/UpdateComponent.js"></script>
+        <script src="components/Character.js"></script>
+        <script src="components/Player.js"></script>
+        <script src="components/Bullet.js"></script>
+        <script src="components/Enemy.js"></script>
+        
+        <script>
+            Engine.currentScene = new MainScene();
+            Engine.start();
+        </script>
+    
+    </body>
 </html>
