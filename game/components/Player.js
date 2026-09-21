@@ -54,12 +54,6 @@ class Player extends Character {
         else if (Input.keysDown.includes('KeyD')) {
             if (this.accel < 1) this.accel += .1;
             this.position.x += (this.speed * this.accel * sprint);
-        } else if (Input.keysDown.includes('KeyW')) {
-            if (this.accel < 1) this.accel += .1;
-            this.position.y -= (this.speed * this.accel * sprint);
-        } else if (Input.keysDown.includes('KeyS')) {
-            if (this.accel < 1) this.accel += .1;
-            this.position.y += (this.speed * this.accel * sprint);
         }
         else {
             if (this.accel > 0.1) {

@@ -35,10 +35,15 @@ class Character extends GameObject {
 
         this.collider.position = this.position;
         const collisionData = Physics.isBoxColliding(this.collider);
-        if (collisionData.colliding) {
-            this.position.y -= collisionData.yMovement - 1;
+        if (collisionData.length > 0) {
+            collisionData.forEach(coll => {
+                if (coll.colliding) {
+                    this.position.y -= coll.yMovement;
+                    this.position.x += coll.xMovement;
+                }
+                this.grounded = !this.grounded ? coll.collidingSides.bottom : this.grounded;
+            })
         }
-        this.grounded = collisionData.grounded;
     }
 
     start() {

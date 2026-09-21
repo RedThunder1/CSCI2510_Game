@@ -4,15 +4,17 @@ class Terrain extends GameObject {
     height;
     collider;
     color;
+    name;
 
-    constructor(position, width, height, color) {
+    constructor(position, width, height, color, name = 'Terrain') {
         super();
         this.position = position;
         this.width = width;
         this.height = height;
         this.color = color;
+        this.name = name;
 
-        this.collider = new BoxCollider(this.position, this.width, this.height, 'Terrain Collider');
+        this.collider = new BoxCollider(this.position, this.width, this.height, name + ' Collider');
         Physics.addCollider(this.collider);
     }
 
