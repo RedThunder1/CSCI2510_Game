@@ -35,5 +35,7 @@ class Terrain extends GameObject {
 
         ctx.fillStyle = this.color;
         ctx.fill();
+
+        this.collider.draw(ctx);
     }
 }

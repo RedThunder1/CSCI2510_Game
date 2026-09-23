@@ -31,12 +31,11 @@ class Physics {
                 const yMin = colliderTop < otherBottom;
                 const yMax = colliderBottom > otherTop;
 
+                const overlayXDirection = Math.abs(colliderRight - otherLeft) < 9 ? -1 : 1;
+                const overlayX = Math.min(colliderRight, otherRight) - Math.max(colliderLeft, otherLeft);
 
-                const overlayXDirection = Math.abs(colliderRight - otherLeft) < 10 ? -1 : 1;
-                const overlayX = Math.min(colliderRight, otherRight) - Math.max(colliderLeft, otherLeft) * overlayXDirection;
-                const overlayYDirection = Math.abs(colliderBottom - otherTop) < 10 ? -1 : 1;
-                const overlayY = Math.min(colliderBottom, otherBottom) - Math.max(colliderTop, otherTop) * overlayYDirection;
-                if (other.name === 'shelf Collider') console.log(overlayX, overlayY, colliderBottom, otherTop);
+                const overlayYDirection = Math.abs(colliderBottom - otherTop) < 20 ? 1 : -1;
+                const overlayY = Math.min(colliderBottom, otherBottom) - Math.max(colliderTop, otherTop);
 
                 if (xMin && xMax && yMin && yMax)
                     //collision data
@@ -48,8 +47,8 @@ class Physics {
                             bottom: (colliderBottom > otherTop && colliderTop < otherBottom),
                             right: (colliderRight < otherLeft && colliderLeft > colliderLeft)
                         },
-                        yMovement: overlayY > 0 && overlayY < 50 ? overlayY : 0,
-                        xMovement: overlayX > 0 && overlayX < 100 ? overlayX : 0,
+                        yMovement: (overlayY > 0 && overlayY < 20 ? overlayY : 0) * overlayYDirection,
+                        xMovement: (overlayX > 0 && overlayX < 9 ? overlayX : 0) * overlayXDirection,
                     });
             }
         }

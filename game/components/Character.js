@@ -27,6 +27,7 @@ class Character extends GameObject {
         this.accel = accel;
 
         this.collider = new BoxCollider(position, width, height, 'Character Collider');
+        this.addComponent(this.collider);
         Physics.addCollider(this.collider);
     }
 

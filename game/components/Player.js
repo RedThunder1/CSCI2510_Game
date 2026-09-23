@@ -1,6 +1,6 @@
 class Player extends Character {
     sprintMultiplier = 1.5; //Sprint multiplier when this holds shift
-    jumpPower = 1.2; //Power of this jump
+    jumpPower = 1.5; //Power of this jump
     jumping = false; //Is this currently jumping
     jumpingTimer = 20; //Duration of jumping
 

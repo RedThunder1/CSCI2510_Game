@@ -17,4 +17,20 @@ class BoxCollider extends Collider {
         this.height = height;
         this.name = name;
     }
+
+    update() {
+
+    }
+
+    draw(ctx) {
+        ctx.beginPath();
+
+        ctx.lineWidth = 10;
+        ctx.lineTo(this.position.x, this.position.y);
+        ctx.lineTo(this.position.x, this.height + this.position.y);
+        ctx.lineTo(this.width + this.position.x, this.height + this.position.y);
+        ctx.lineTo(this.width + this.position.x, this.position.y);
+
+        ctx.strokeStyle = 'blue'
+    }
 }
