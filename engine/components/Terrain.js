@@ -14,8 +14,8 @@ class Terrain extends GameObject {
         this.color = color;
         this.name = name;
 
-        this.collider = new BoxCollider(this.position, this.width, this.height, name + ' Collider');
-        Physics.addCollider(this.collider);
+        this.collider = new BoxCollider(this, this.position, this.width, this.height, name + ' Collider');
+        this.addComponent(this.collider);
     }
 
     start() {
@@ -35,7 +35,5 @@ class Terrain extends GameObject {
 
         ctx.fillStyle = this.color;
         ctx.fill();
-
-        this.collider.draw(ctx);
     }
 }

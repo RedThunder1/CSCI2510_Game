@@ -1,7 +1,6 @@
 class Character extends GameObject {
     prevPosition;
     position;
-    collider;
     width;
     height;
     speed;
@@ -26,12 +25,15 @@ class Character extends GameObject {
         this.speed = speed;
         this.accel = accel;
 
-        this.collider = new BoxCollider(position, width, height, 'Character Collider');
+        this.collider = new BoxCollider(this, position, width, height, 'Character Collider');
         this.addComponent(this.collider);
-        Physics.addCollider(this.collider);
     }
 
     update() {
+        if (this.health <= 0) {
+            Engine.currentScene.destroy(this);
+        }
+
         this.position.y += this.gravity;
 
         this.collider.position = this.position;

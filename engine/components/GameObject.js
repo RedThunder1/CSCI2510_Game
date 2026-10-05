@@ -1,5 +1,7 @@
 class GameObject {
     components = [];
+    name = "";
+    collider;
 
     addComponent(component) {
         this.components.push(component);
@@ -21,6 +23,13 @@ class GameObject {
     draw(ctx) {
         for (const component of this.components) {
             component.draw?.(ctx);
+        }
+    }
+
+    destroy() {
+        if (this.collider) {
+            const index = Physics.colliders.indexOf(this.collider);
+            Physics.colliders.splice(index, 1);
         }
     }
 }

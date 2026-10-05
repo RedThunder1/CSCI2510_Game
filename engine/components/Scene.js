@@ -24,7 +24,15 @@ class Scene {
     }
 
     destroy(gameObject) {
+        gameObject.destroy();
         this.gameObjects.splice(this.gameObjects.indexOf(gameObject), 1);
+    }
+
+    get(name) {
+        for (const obj of this.gameObjects) {
+            if (obj.name === name) return obj;
+        }
+        return null;
     }
 
 }

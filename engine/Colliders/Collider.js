@@ -1,9 +1,10 @@
 class Collider {
 
     tags;
+    trigger; //If the collider is only used for events and doesn't need collision handling
+    gameObject;
 
-    constructor(tags = []) {
-        this.tags = tags;
+    constructor() {
     }
 
     update() {
@@ -14,4 +15,7 @@ class Collider {
 
     }
 
+    onCollision(other) {
+
+    }
 }

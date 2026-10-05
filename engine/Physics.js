@@ -15,6 +15,7 @@ class Physics {
         let collisions = [];
 
         for(let other of this.colliders) {
+            const isTrigger = collider.trigger || other.trigger;
             if (collider !== other) {
                 const colliderRight = collider.position.x + collider.width;
                 const colliderLeft = collider.position.x;
@@ -37,19 +38,23 @@ class Physics {
                 const overlayYDirection = Math.abs(colliderBottom - otherTop) < 20 ? 1 : -1;
                 const overlayY = Math.min(colliderBottom, otherBottom) - Math.max(colliderTop, otherTop);
 
-                if (xMin && xMax && yMin && yMax)
+                if (xMin && xMax && yMin && yMax) {
+
+                    collider.onCollision(other);
                     //collision data
                     collisions.push({
                         colliding: true,
+                        tags: other.tags,
                         collidingSides: {
                             top: (colliderTop < otherBottom && colliderBottom > otherBottom),
                             left: (colliderLeft < otherRight && colliderRight > otherRight),
                             bottom: (colliderBottom > otherTop && colliderTop < otherBottom),
                             right: (colliderRight < otherLeft && colliderLeft > colliderLeft)
                         },
-                        yMovement: (overlayY > 0 && overlayY < 20 ? overlayY : 0) * overlayYDirection,
-                        xMovement: (overlayX > 0 && overlayX < 9 ? overlayX : 0) * overlayXDirection,
+                        yMovement: isTrigger ? 0 : (overlayY > 0 && overlayY < 20 ? overlayY : 0) * overlayYDirection,
+                        xMovement: isTrigger ? 0 : (overlayX > 0 && overlayX < 9 ? overlayX : 0) * overlayXDirection,
                     });
+                }
             }
         }
         return collisions;

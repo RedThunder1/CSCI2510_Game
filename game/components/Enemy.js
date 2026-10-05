@@ -4,6 +4,10 @@ class Enemy extends Character {
     currentPoint;
     currentIndex = 0;
 
+    bulletDelay = 100;
+    shooting = false;
+    right = true;
+
     constructor(
         position = {x: 50, y: 50},
         patrolPoints = [],
@@ -13,6 +17,7 @@ class Enemy extends Character {
         speed = 2,
         accel = 0.1) {
         super();
+        this.name = "enemy"
         this.position = position;
         this.width = width;
         this.height = height;
@@ -22,11 +27,27 @@ class Enemy extends Character {
         this.patrolPoints = patrolPoints;
         this.currentPoint = patrolPoints[0];
         this.collider.tags.push('enemy')
+
+        this.collider.onCollision = function (other) {
+
+        }
     }
 
     update() {
         super.update();
         this.move();
+
+        if (this.bulletDelay <= 0) {
+            this.bulletDelay = 100;
+            this.shooting = false;
+        } else if (this.shooting) {
+            this.bulletDelay -= 1;
+        }
+
+        if (!this.shooting) {
+            Engine.currentScene.instantiate(new Bullet('enemy', {x: this.right ? this.position.x + this.width/2 : this.position.x, y: this.position.y + 25}, this.right ? 1 : -1));
+            this.shooting = true;
+        }
     }
 
     draw(ctx) {
@@ -42,6 +63,7 @@ class Enemy extends Character {
 
     move() {
         const direction = this.position.x < this.currentPoint ? 1 : -1;
+        this.right = direction > 0;
 
         if (direction > 0 && this.position.x < this.currentPoint) {
             if (this.accel < 1) this.accel += .1;

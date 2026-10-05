@@ -6,10 +6,20 @@ class Player extends Character {
 
     bulletDelay = 10;
     shooting = false;
+    right = true; //Is the player facing right, used for shooting direction
     
     constructor(position) {
         super();
+        this.name = 'Player'
         this.position = position;
+
+        this.collider.onCollision = function (other) {
+
+        }
+    }
+
+    start() {
+        this.collider.tags.push('player')
     }
 
     draw(ctx) {
@@ -35,7 +45,7 @@ class Player extends Character {
         }
 
         if (Input.keysDown.includes('KeyF') && !this.shooting) {
-            Engine.currentScene.instantiate(new Bullet({x: this.position.x, y: this.position.y + 25}, 1));
+            Engine.currentScene.instantiate(new Bullet('player', {x: this.right ? this.position.x + this.width/2 : this.position.x, y: this.position.y + 25}, this.right ? 1 : -1));
             this.shooting = true;
         }
 
@@ -50,10 +60,12 @@ class Player extends Character {
         if (Input.keysDown.includes('KeyA')) {
             if (this.accel < 1) this.accel += .1;
             this.position.x -= (this.speed * this.accel * sprint);
+            this.right = false;
         }
         else if (Input.keysDown.includes('KeyD')) {
             if (this.accel < 1) this.accel += .1;
             this.position.x += (this.speed * this.accel * sprint);
+            this.right = true;
         }
         else {
             if (this.accel > 0.1) {
@@ -75,6 +87,10 @@ class Player extends Character {
                 this.jumpingTimer = 20;
             }
         }
+    }
 
+    destroy() {
+        Engine.currentScene.instantiate(new Empty({x: window.innerWidth/2 - 100}, [new TextLabel('Game Over', 'red')]))
+        super.destroy();
     }
 }
