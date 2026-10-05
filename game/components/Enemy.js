@@ -18,7 +18,7 @@ class Enemy extends Character {
         accel = 0.1) {
         super();
         this.name = "enemy"
-        this.position = position;
+        this.transform.position = position;
         this.width = width;
         this.height = height;
         this.health = health;
@@ -45,35 +45,35 @@ class Enemy extends Character {
         }
 
         if (!this.shooting) {
-            Engine.currentScene.instantiate(new Bullet('enemy', {x: this.right ? this.position.x + this.width/2 : this.position.x, y: this.position.y + 25}, this.right ? 1 : -1));
+            Engine.currentScene.instantiate(new Bullet('enemy', {x: this.right ? this.transform.position.x + this.width/2 : this.transform.position.x, y: this.transform.position.y + 25}, this.right ? 1 : -1));
             this.shooting = true;
         }
     }
 
     draw(ctx) {
         ctx.beginPath();
-        ctx.lineTo(this.position.x, this.position.y);
-        ctx.lineTo(this.position.x, this.height + this.position.y);
-        ctx.lineTo(this.width + this.position.x, this.height + this.position.y);
-        ctx.lineTo(this.width + this.position.x, this.position.y);
+        ctx.lineTo(this.transform.position.x, this.transform.position.y);
+        ctx.lineTo(this.transform.position.x, this.height + this.transform.position.y);
+        ctx.lineTo(this.width + this.transform.position.x, this.height + this.transform.position.y);
+        ctx.lineTo(this.width + this.transform.position.x, this.transform.position.y);
 
         ctx.fillStyle = "green";
         ctx.fill();
     }
 
     move() {
-        const direction = this.position.x < this.currentPoint ? 1 : -1;
+        const direction = this.transform.position.x < this.currentPoint ? 1 : -1;
         this.right = direction > 0;
 
-        if (direction > 0 && this.position.x < this.currentPoint) {
+        if (direction > 0 && this.transform.position.x < this.currentPoint) {
             if (this.accel < 1) this.accel += .1;
-            this.position.x += (this.speed * this.accel);
-        } else if (direction < 0 && this.position.x > this.currentPoint) {
+            this.transform.position.x += (this.speed * this.accel);
+        } else if (direction < 0 && this.transform.position.x > this.currentPoint) {
             if (this.accel < 1) this.accel += .1;
-            this.position.x -= (this.speed * this.accel);
+            this.transform.position.x -= (this.speed * this.accel);
         }
 
-        if (direction > 0 && this.position.x > this.currentPoint || direction < 0 && this.position.x < this.currentPoint) {
+        if (direction > 0 && this.transform.position.x > this.currentPoint || direction < 0 && this.transform.position.x < this.currentPoint) {
             if (this.patrolPoints.length > this.currentIndex + 1) {
                 this.currentIndex++;
                 this.currentPoint = this.patrolPoints[this.currentIndex];

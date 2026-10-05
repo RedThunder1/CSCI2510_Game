@@ -17,15 +17,15 @@ class Physics {
         for(let other of this.colliders) {
             const isTrigger = collider.trigger || other.trigger;
             if (collider !== other) {
-                const colliderRight = collider.position.x + collider.width;
-                const colliderLeft = collider.position.x;
-                const colliderTop = collider.position.y;
-                const colliderBottom = collider.position.y + collider.height;
+                const colliderRight = collider.transform.position.x + collider.width;
+                const colliderLeft = collider.transform.position.x;
+                const colliderTop = collider.transform.position.y;
+                const colliderBottom = collider.transform.position.y + collider.height;
 
-                const otherRight = other.position.x + other.width;
-                const otherLeft = other.position.x;
-                const otherTop = other.position.y;
-                const otherBottom = other.position.y + other.height;
+                const otherRight = other.transform.position.x + other.width;
+                const otherLeft = other.transform.position.x;
+                const otherTop = other.transform.position.y;
+                const otherBottom = other.transform.position.y + other.height;
 
                 const xMin = colliderLeft < otherRight;
                 const xMax = colliderRight > otherLeft;
@@ -42,18 +42,20 @@ class Physics {
 
                     collider.onCollision(other);
                     //collision data
-                    collisions.push({
-                        colliding: true,
-                        tags: other.tags,
-                        collidingSides: {
-                            top: (colliderTop < otherBottom && colliderBottom > otherBottom),
-                            left: (colliderLeft < otherRight && colliderRight > otherRight),
-                            bottom: (colliderBottom > otherTop && colliderTop < otherBottom),
-                            right: (colliderRight < otherLeft && colliderLeft > colliderLeft)
-                        },
-                        yMovement: isTrigger ? 0 : (overlayY > 0 && overlayY < 20 ? overlayY : 0) * overlayYDirection,
-                        xMovement: isTrigger ? 0 : (overlayX > 0 && overlayX < 9 ? overlayX : 0) * overlayXDirection,
-                    });
+                    if (!isTrigger) {
+                        collisions.push({
+                            colliding: true,
+                            tags: other.tags,
+                            collidingSides: {
+                                top: (colliderTop < otherBottom && colliderBottom > otherBottom),
+                                left: (colliderLeft < otherRight && colliderRight > otherRight),
+                                bottom: (colliderBottom > otherTop && colliderTop < otherBottom),
+                                right: (colliderRight < otherLeft && colliderLeft > colliderLeft)
+                            },
+                            yMovement: (overlayY > 0 && overlayY < 20 ? overlayY : 0) * overlayYDirection,
+                            xMovement: (overlayX > 0 && overlayX < 9 ? overlayX : 0) * overlayXDirection,
+                        });
+                    }
                 }
             }
         }

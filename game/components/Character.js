@@ -1,6 +1,5 @@
 class Character extends GameObject {
     prevPosition;
-    position;
     width;
     height;
     speed;
@@ -18,14 +17,14 @@ class Character extends GameObject {
         speed = 5,
         accel = 0.1) {
         super();
-        this.position = position;
+        this.transform.position = position;
         this.width = width;
         this.height = height;
         this.health = health;
         this.speed = speed;
         this.accel = accel;
 
-        this.collider = new BoxCollider(this, position, width, height, 'Character Collider');
+        this.collider = new BoxCollider(width, height);
         this.addComponent(this.collider);
     }
 
@@ -34,15 +33,15 @@ class Character extends GameObject {
             Engine.currentScene.destroy(this);
         }
 
-        this.position.y += this.gravity;
+        this.transform.position.y += this.gravity;
 
-        this.collider.position = this.position;
+        this.collider.position = this.transform.position;
         const collisionData = Physics.isBoxColliding(this.collider);
         if (collisionData.length > 0) {
             collisionData.forEach(coll => {
                 if (coll.colliding) {
-                    this.position.y -= coll.yMovement;
-                    this.position.x += coll.xMovement;
+                    this.transform.position.y -= coll.yMovement;
+                    this.transform.position.x += coll.xMovement;
                 }
                 this.grounded = !this.grounded ? coll.collidingSides.bottom : this.grounded;
             })

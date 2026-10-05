@@ -1,6 +1,12 @@
 class Scene {
     gameObjects = [];
 
+    constructor() {
+        let cameraGameObject = new GameObject("MainCamera", ["MainCamera"])
+        cameraGameObject.addComponent(new Camera())
+        this.instantiate(cameraGameObject)
+    }
+
     instantiate(gameObject) {
         this.gameObjects.push(gameObject);
     }

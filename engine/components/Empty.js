@@ -1,7 +1,7 @@
 class Empty extends GameObject {
     constructor(position, components = []) {
         super();
-        this.position = position;
+        this.transform.position = position;
         this.components = components;
     }
 }

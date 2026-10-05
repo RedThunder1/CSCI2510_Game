@@ -11,7 +11,7 @@ class Player extends Character {
     constructor(position) {
         super();
         this.name = 'Player'
-        this.position = position;
+        this.transform.position = position;
 
         this.collider.onCollision = function (other) {
 
@@ -24,10 +24,10 @@ class Player extends Character {
 
     draw(ctx) {
         ctx.beginPath();
-        ctx.lineTo(this.position.x, this.position.y);
-        ctx.lineTo(this.position.x, this.height + this.position.y);
-        ctx.lineTo(this.width + this.position.x, this.height + this.position.y);
-        ctx.lineTo(this.width + this.position.x, this.position.y);
+        ctx.lineTo(this.transform.position.x, this.transform.position.y);
+        ctx.lineTo(this.transform.position.x, this.height + this.transform.position.y);
+        ctx.lineTo(this.width + this.transform.position.x, this.height + this.transform.position.y);
+        ctx.lineTo(this.width + this.transform.position.x, this.transform.position.y);
 
         ctx.fillStyle = "red";
         ctx.fill();
@@ -45,7 +45,7 @@ class Player extends Character {
         }
 
         if (Input.keysDown.includes('KeyF') && !this.shooting) {
-            Engine.currentScene.instantiate(new Bullet('player', {x: this.right ? this.position.x + this.width/2 : this.position.x, y: this.position.y + 25}, this.right ? 1 : -1));
+            Engine.currentScene.instantiate(new Bullet('player', {x: this.right ? this.transform.position.x + this.width/2 : this.transform.position.x, y: this.transform.position.y + 25}, this.right ? 1 : -1));
             this.shooting = true;
         }
 
@@ -55,16 +55,16 @@ class Player extends Character {
     move() {
         const sprint = Input.keysDown.includes("ShiftLeft") ? this.sprintMultiplier : 1;
 
-        this.prevPosition = this.position;
+        this.prevPosition = this.transform.position;
 
         if (Input.keysDown.includes('KeyA')) {
             if (this.accel < 1) this.accel += .1;
-            this.position.x -= (this.speed * this.accel * sprint);
+            this.transform.position.x -= (this.speed * this.accel * sprint);
             this.right = false;
         }
         else if (Input.keysDown.includes('KeyD')) {
             if (this.accel < 1) this.accel += .1;
-            this.position.x += (this.speed * this.accel * sprint);
+            this.transform.position.x += (this.speed * this.accel * sprint);
             this.right = true;
         }
         else {
@@ -81,7 +81,7 @@ class Player extends Character {
             this.jumping = true;
             this.jumpingTimer--;
             if (this.jumpingTimer > 0) {
-                this.position.y -= this.jumpPower * this.jumpingTimer;
+                this.transform.position.y -= this.jumpPower * this.jumpingTimer;
             } else {
                 this.jumping = false;
                 this.jumpingTimer = 20;
