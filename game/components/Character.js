@@ -46,6 +46,8 @@ class Character extends GameObject {
                 }
                 this.grounded = !this.grounded ? coll.collidingSides.bottom : this.grounded;
             })
+        } else {
+            this.grounded = false;
         }
     }
 
