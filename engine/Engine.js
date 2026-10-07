@@ -2,21 +2,27 @@ class Engine {
     static canvas;
     static ctx;
 
-    static currentScene;
+    static layers = ["default", "UI"]
 
-    static start() {
+    static start(nextScene, settings) {
         Engine.canvas = document.getElementById("canv");
         Engine.ctx = Engine.canvas.getContext("2d");
 
         addEventListener("keydown", Input.keyDown);
         addEventListener("keyup", Input.keyUp);
 
-        this.currentScene.start();
+        SceneManager.nextScene = nextScene;
+
+        if(settings){
+            Engine.layers = settings.layers
+        }
 
         requestAnimationFrame(Engine.gameLoop);
     }
 
     static gameLoop() {
+        SceneManager.update();
+
         Engine.update();
         Engine.draw();
         requestAnimationFrame(Engine.gameLoop);
@@ -25,10 +31,10 @@ class Engine {
     static draw() {
         Engine.canvas.width = window.innerWidth;
         Engine.canvas.height = window.innerHeight;
-        this.currentScene.draw(Engine.ctx);
+        SceneManager.currentScene.draw(this.ctx);
     }
 
     static update() {
-        Engine.currentScene.update();
+        SceneManager.currentScene.update();
     }
 }

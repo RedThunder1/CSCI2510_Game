@@ -4,8 +4,8 @@ class MovingTerrain extends Terrain {
     currentPoint;
     currentIndex;
 
-    constructor(position, width, height, color, speed, points, name = 'Terrain') {
-        super(position, width, height, color, name);
+    constructor(width, height, color, speed, points, name = 'Terrain') {
+        super(width, height, color, name);
         this.speed = speed;
         this.points = points;
         this.currentPoint = this.points[0];
@@ -17,15 +17,15 @@ class MovingTerrain extends Terrain {
     }
 
     update() {
-        const direction = this.transform.position.x < this.currentPoint ? 1 : -1;
+        const direction = this.position.x < this.currentPoint ? 1 : -1;
 
-        if (direction > 0 && this.transform.position.x < this.currentPoint) {
-            this.transform.position.x += this.speed;
-        } else if (direction < 0 && this.transform.position.x > this.currentPoint) {
-            this.transform.position.x -= this.speed;
+        if (direction > 0 && this.position.x < this.currentPoint) {
+            this.position.x += this.speed;
+        } else if (direction < 0 && this.position.x > this.currentPoint) {
+            this.position.x -= this.speed;
         }
 
-        if (direction > 0 && this.transform.position.x >= this.currentPoint || direction < 0 && this.transform.position.x <= this.currentPoint) {
+        if (direction > 0 && this.position.x >= this.currentPoint || direction < 0 && this.position.x <= this.currentPoint) {
             if (this.points.length > this.currentIndex + 1) {
                 this.currentIndex++;
                 this.currentPoint = this.points[this.currentIndex];

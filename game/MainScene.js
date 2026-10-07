@@ -3,19 +3,23 @@ class MainScene extends Scene {
         super();
         this.instantiate(new MainGameObject());
 
-        this.instantiate(new Terrain({x: 0, y: window.innerHeight - 100}, window.innerWidth, 100, 'black', 'floor'));
-        this.instantiate(new Terrain({x: 0, y: 0}, 20, window.innerHeight, 'black', 'left_wall'));
-        this.instantiate(new Terrain({x: window.innerWidth - 20, y: 0}, 20, window.innerHeight, 'black', 'right_wall'));
-        this.instantiate(new Terrain({x: 0, y: 0}, window.innerWidth, 20, 'black', 'ceiling'));
-        this.instantiate(new Terrain({x: 0, y: 750 - 20}, 200, 20, 'black', 'shelf'));
-        this.instantiate(new Terrain({x: 300, y: 650 - 20}, 200, 20, 'black'), 'shelf 2');
-        this.instantiate(new Terrain({x: 400, y: 550}, 200, 500, 'black', 'wall'));
-        this.instantiate(new MovingTerrain({x: 600, y: 550}, 300, 50, 'black', 2, [window.innerWidth - 320, 600]));
+        this.instantiate(new Terrain(window.innerWidth, 100, 'black', 'floor'), {x: 0, y: window.innerHeight - 100});
+        this.instantiate(new Terrain(20, window.innerHeight, 'black', 'left_wall'), {x: 0, y: 0});
+        this.instantiate(new Terrain(20, window.innerHeight, 'black', 'right_wall'), {x: window.innerWidth - 20, y: 0});
+        this.instantiate(new Terrain(window.innerWidth, 20, 'black', 'ceiling'), {x: 0, y: 0});
+        this.instantiate(new Terrain(200, 20, 'black', 'shelf'), {x: 0, y: 750 - 20});
+        this.instantiate(new Terrain(200, 20, 'black', 'shelf 2'), {x: 300, y: 650 - 20});
+        this.instantiate(new Terrain(200, 500, 'black', 'wall'), {x: 400, y: 550});
+        this.instantiate(new MovingTerrain(300, 50, 'black', 2, [window.innerWidth - 320, 600]), {x: 600, y: 550});
 
         //Custom Objects
-        this.instantiate(new Enemy({x: 700, y: window.innerHeight - 150}, [1000, 600.1]));
-        this.instantiate(new Player({x: 100, y: 0}));
+        this.instantiate(new Enemy([1000, 600.1]), {x: 700, y: window.innerHeight - 150});
+        this.instantiate(new Player(), {x: 100, y: 0});
 
-        this.instantiate(new UI());
+        this.instantiate(new UI('UI', ['UI'], 'UI'));
+
+        const empty = new Empty();
+        empty.addComponent(new TextLabel('Test'))
+        this.instantiate(empty, {x: 300, y: 400});
     }
 }

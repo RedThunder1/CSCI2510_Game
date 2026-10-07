@@ -10,14 +10,12 @@ class Character extends GameObject {
     gravity = Physics.gravity;
 
     constructor(
-        position = {x: 50, y: 50},
         width = 50,
         height = 50,
         health = 100,
         speed = 5,
         accel = 0.1) {
         super();
-        this.transform.position = position;
         this.width = width;
         this.height = height;
         this.health = health;
@@ -30,18 +28,18 @@ class Character extends GameObject {
 
     update() {
         if (this.health <= 0) {
-            Engine.currentScene.destroy(this);
+            SceneManager.currentScene.destroy(this);
         }
 
-        this.transform.position.y += this.gravity;
+        this.position.y += this.gravity;
 
-        this.collider.position = this.transform.position;
+        this.collider.transform.position = this.position;
         const collisionData = Physics.isBoxColliding(this.collider);
         if (collisionData.length > 0) {
             collisionData.forEach(coll => {
                 if (coll.colliding) {
-                    this.transform.position.y -= coll.yMovement;
-                    this.transform.position.x += coll.xMovement;
+                    this.position.y -= coll.yMovement;
+                    this.position.x += coll.xMovement;
                 }
                 this.grounded = !this.grounded ? coll.collidingSides.bottom : this.grounded;
             })

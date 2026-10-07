@@ -7,8 +7,11 @@ class Scene {
         this.instantiate(cameraGameObject)
     }
 
-    instantiate(gameObject) {
-        this.gameObjects.push(gameObject);
+    instantiate(gameObject, position = new Vector2(0, 0), rotation = 0) {
+        this.gameObjects.push(gameObject)
+        gameObject.transform.position = position
+        gameObject.transform.rotation = rotation
+        return gameObject
     }
 
     start() {
@@ -24,8 +27,25 @@ class Scene {
     }
 
     draw(ctx) {
-        for (const gameObject of this.gameObjects) {
-            gameObject.draw(ctx);
+        ctx.fillStyle = Camera.main.components[1].backgroundColor;
+        ctx.fillRect(0, 0, Engine.canvas.width, Engine.canvas.height)
+
+        //Start Camera code
+        ctx.save()
+
+        for (const layer of Engine.layers.filter(l=>l !== "UI")) {
+            for (const gameObject of this.gameObjects.filter(go => go.layer === layer)) {
+                gameObject.draw(ctx)
+            }
+        }
+
+
+        ctx.restore()
+        //Stop camera code
+
+        //UI Layer
+        for (const gameObject of this.gameObjects.filter(go => go.layer === "UI")) {
+            gameObject.draw(ctx)
         }
     }
 

@@ -1,8 +1,5 @@
-class TextLabel extends Component{
-    /** @type{string} The fill color of the text */
+class TextLabel extends Component {
     fillStyle = "black"
-
-    /** @type{string} The string to display */
     text  = "[BLANK]"
 
     constructor(text, color) {
@@ -12,11 +9,14 @@ class TextLabel extends Component{
     }
 
     draw(ctx) {
+        console.log('fas')
         ctx.save()
 
-        ctx.translate(this.transform.position.x, this.transform.position.y)
+        ctx.translate(this.position.x, this.position.y)
         ctx.scale(this.transform.scale.x, this.transform.scale.y)
         ctx.rotate(this.transform.rotation)
+
+        ctx.font = '20px Arial';
 
         ctx.fillStyle = this.fillStyle
 

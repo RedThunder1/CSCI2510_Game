@@ -17,15 +17,15 @@ class Physics {
         for(let other of this.colliders) {
             const isTrigger = collider.trigger || other.trigger;
             if (collider !== other) {
-                const colliderRight = collider.transform.position.x + collider.width;
-                const colliderLeft = collider.transform.position.x;
-                const colliderTop = collider.transform.position.y;
-                const colliderBottom = collider.transform.position.y + collider.height;
+                const colliderRight = collider.position.x + collider.width;
+                const colliderLeft = collider.position.x;
+                const colliderTop = collider.position.y;
+                const colliderBottom = collider.position.y + collider.height;
 
-                const otherRight = other.transform.position.x + other.width;
-                const otherLeft = other.transform.position.x;
-                const otherTop = other.transform.position.y;
-                const otherBottom = other.transform.position.y + other.height;
+                const otherRight = other.position.x + other.width;
+                const otherLeft = other.position.x;
+                const otherTop = other.position.y;
+                const otherBottom = other.position.y + other.height;
 
                 const xMin = colliderLeft < otherRight;
                 const xMax = colliderRight > otherLeft;

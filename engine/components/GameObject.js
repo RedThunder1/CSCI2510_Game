@@ -1,5 +1,6 @@
 class GameObject {
     components = [];
+    tags = [];
     name = "";
     collider;
     layer;
@@ -12,8 +13,7 @@ class GameObject {
         this.tags = tags
         this.layer = layer
     }
-    addComponent(component, parameters){
-        Object.assign(component, parameters)
+    addComponent(component){
         this.components.push(component)
         component.gameObject = this
     }
@@ -49,8 +49,12 @@ class GameObject {
         return this.components.find(c => c instanceof type)
     }
 
-    get transform(){
+    get transform() {
         return this.components[0];
+    }
+
+    get position() {
+        return this.components[0].position;
     }
 
     destroy() {
@@ -60,15 +64,15 @@ class GameObject {
         }
     }
 
-    static find(name){
+    static find(name) {
         return SceneManager.currentScene.gameObjects.find(go => go.name === name);
     }
 
-    static findGameObjectsWithTag(tag){
+    static findGameObjectsWithTag(tag) {
         return SceneManager.currentScene.gameObjects.filter(go => go.tags.includes(tag));
     }
 
-    static findGameObjectsByType(type){
+    static findGameObjectsByType(type) {
         return SceneManager.currentScene.gameObjects.filter(go=>go.components.find(c=>c instanceof type));
     }
 }

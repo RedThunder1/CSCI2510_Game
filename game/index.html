@@ -12,6 +12,7 @@
         <canvas id="canv">
         
         </canvas>
+        <script src="../engine/SceneManager.js"></script>
         <script src="../engine/components/Component.js"></script>
         <script src="../engine/Colliders/Collider.js"></script>
         <script src="../engine/Colliders/BoxCollider.js"></script>
@@ -40,7 +41,7 @@
 
         
         <script>
-            Engine.currentScene = new MainScene();
+            SceneManager.currentScene = new MainScene();
             Engine.start();
         </script>
     
