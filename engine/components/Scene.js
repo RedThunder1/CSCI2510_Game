@@ -7,10 +7,17 @@ class Scene {
         this.instantiate(cameraGameObject)
     }
 
-    instantiate(gameObject, position = new Vector2(0, 0), rotation = 0) {
+    instantiate(gameObject, position = new Vector2(0, 0), rotation = 0, components = []) {
         this.gameObjects.push(gameObject)
         gameObject.transform.position = position
         gameObject.transform.rotation = rotation
+
+        if (components) {
+            components.forEach(component => {
+                gameObject.addComponent(component);
+            });
+        }
+
         return gameObject
     }
 
@@ -27,7 +34,7 @@ class Scene {
     }
 
     draw(ctx) {
-        ctx.fillStyle = Camera.main.components[1].backgroundColor;
+        ctx.fillStyle = Camera.main.components[0].backgroundColor;
         ctx.fillRect(0, 0, Engine.canvas.width, Engine.canvas.height)
 
         //Start Camera code

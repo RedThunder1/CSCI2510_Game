@@ -12,10 +12,15 @@
         <canvas id="canv">
         
         </canvas>
+        <script src="../engine/Time.js"></script>
+        <script src="../engine/Input.js"></script>
+        <script src="../engine/Engine.js"></script>
+        <script src="../engine/Physics.js"></script>
         <script src="../engine/SceneManager.js"></script>
+
         <script src="../engine/components/Component.js"></script>
-        <script src="../engine/Colliders/Collider.js"></script>
-        <script src="../engine/Colliders/BoxCollider.js"></script>
+        <script src="../engine/components/Colliders/Collider.js"></script>
+        <script src="../engine/components/Colliders/BoxCollider.js"></script>
         <script src="../engine/components/Vector2.js"></script>
         <script src="../engine/components/GameObject.js"></script>
         <script src="../engine/components/Scene.js"></script>
@@ -25,23 +30,24 @@
         <script src="../engine/components/Empty.js"></script>
         <script src="../engine/components/Camera.js"></script>
         <script src="../engine/components/Transform.js"></script>
-        <script src="../engine/Time.js"></script>
-        <script src="../engine/Input.js"></script>
-        <script src="../engine/Engine.js"></script>
-        <script src="../engine/Physics.js"></script>
-        <script src="MainScene.js"></script>
+
+        <script src="scenes/Level1.js"></script>
+        <script src="scenes/Level2.js"></script>
+
         <script src="components/MainGameObject.js"></script>
         <script src="components/DrawComponent.js"></script>
         <script src="components/UpdateComponent.js"></script>
         <script src="components/Character.js"></script>
         <script src="components/Player.js"></script>
         <script src="components/Bullet.js"></script>
+        <script src="components/Spikes.js"></script>
         <script src="components/Enemy.js"></script>
         <script src="components/UI.js"></script>
+        <script src="components/Goal.js"></script>
 
         
         <script>
-            SceneManager.currentScene = new MainScene();
+            SceneManager.currentScene = new Level1();
             Engine.start();
         </script>
     

@@ -10,8 +10,4 @@ class Component {
     get position() {
         return this.gameObject.position;
     }
-
-    draw(ctx) {
-        console.log('draw');
-    }
 }

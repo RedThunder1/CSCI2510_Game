@@ -41,6 +41,7 @@ class Physics {
                 if (xMin && xMax && yMin && yMax) {
 
                     collider.onCollision(other);
+                    other.onCollision(collider);
                     //collision data
                     if (!isTrigger) {
                         collisions.push({

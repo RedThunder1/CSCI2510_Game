@@ -1,5 +1,6 @@
 class GameObject {
     components = [];
+    transform = new Transform();
     tags = [];
     name = "";
     collider;
@@ -8,7 +9,6 @@ class GameObject {
     static nextID = 0
 
     constructor(name, tags = [], layer = 'default'){
-        this.addComponent(new Transform())
         this.name = name
         this.tags = tags
         this.layer = layer
@@ -40,21 +40,20 @@ class GameObject {
     }
 
     draw(ctx){
-        for(const component of this.components){
-            component.draw?.(ctx)
+        ctx.save();
+        for(const component of this.components) {
+            // @ts-expect-error
+            component.draw?.(ctx);
         }
+        ctx.restore();
     }
 
     getComponent(type) {
         return this.components.find(c => c instanceof type)
     }
 
-    get transform() {
-        return this.components[0];
-    }
-
     get position() {
-        return this.components[0].position;
+        return this.transform.position;
     }
 
     destroy() {
