@@ -13,15 +13,6 @@ class UI extends GameObject {
     update() {
         let player = SceneManager.currentScene.get('Player')
         this.health = !player ? 0 : player.health;
-
-        if (this.health <= 0 && !this.gameOver) {
-            this.gameOver = true;
-            console.log('game over')
-            const text = new TextLabel('Game Over', 'red');
-            this.addComponent(text);
-            text.transform.position = {x: 300, y: 300}
-            //text.transform.scale = {x: 50, y: 50};
-        }
     }
 
     draw(ctx) {

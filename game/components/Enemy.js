@@ -4,7 +4,7 @@ class Enemy extends Character {
     currentPoint;
     currentIndex = 0;
 
-    bulletDelay = 5;
+    bulletDelay = 50;
     shooting = false;
     right = true;
 
@@ -36,7 +36,7 @@ class Enemy extends Character {
         this.move();
 
         if (this.bulletDelay <= 0) {
-            this.bulletDelay = 5;
+            this.bulletDelay = 50;
             this.shooting = false;
         } else if (this.shooting) {
             this.bulletDelay -= 1;

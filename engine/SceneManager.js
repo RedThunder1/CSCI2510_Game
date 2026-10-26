@@ -2,6 +2,11 @@ class SceneManager {
     static currentScene;
     static nextScene;
 
+    static start(scene) {
+        this.currentScene = scene;
+        SceneManager.currentScene.start();
+    }
+
     static update(){
         if(SceneManager.nextScene) {
             SceneManager.currentScene = SceneManager.nextScene;

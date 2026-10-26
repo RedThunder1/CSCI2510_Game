@@ -25,14 +25,17 @@
         <script src="../engine/components/GameObject.js"></script>
         <script src="../engine/components/Scene.js"></script>
         <script src="../engine/components/Terrain.js"></script>
+        <script src="../engine/components/Background.js"></script>
         <script src="../engine/components/MovingTerrain.js"></script>
+        <script src="../engine/components/BreakableTerrain.js"></script>
         <script src="../engine/components/TextLabel.js"></script>
-        <script src="../engine/components/Empty.js"></script>
         <script src="../engine/components/Camera.js"></script>
         <script src="../engine/components/Transform.js"></script>
 
+        <script src="scenes/GameOverScene.js"></script>
         <script src="scenes/Level1.js"></script>
         <script src="scenes/Level2.js"></script>
+        <script src="scenes/Level3.js"></script>
 
         <script src="components/MainGameObject.js"></script>
         <script src="components/DrawComponent.js"></script>
@@ -47,7 +50,7 @@
 
         
         <script>
-            SceneManager.currentScene = new Level1();
+            SceneManager.start(new Level2());
             Engine.start();
         </script>
     

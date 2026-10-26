@@ -46,6 +46,10 @@ class Player extends Character {
             this.shooting = true;
         }
 
+        if (this.health <= 0) {
+            SceneManager.nextScene = new GameOverScene(SceneManager.currentScene);
+        }
+
         super.update();
     }
 

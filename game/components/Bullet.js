@@ -45,7 +45,7 @@ class Bullet extends GameObject{
 
     onCollision(other) {
         if (!other.gameObject.tags.includes(this.parentTag) && !other.gameObject.tags.includes('bullet')) {
-            if (other.gameObject instanceof Character) {
+            if (other.gameObject.health !== undefined) {
                 other.gameObject.health -= this.damage;
             }
             SceneManager.currentScene.destroy(this);
