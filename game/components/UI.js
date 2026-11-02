@@ -8,6 +8,7 @@ class UI extends GameObject {
     gameOver = false;
 
     start() {
+        this.addComponent(new TextLabel('-/-', 'white', 20, false, {x: 300, y: 0}))
     }
 
     update() {
@@ -20,14 +21,14 @@ class UI extends GameObject {
     }
 
     drawHealthBar(ctx) {
-        const point = {x: 20, y: 70}
+        const point = {x: 20, y: window.innerHeight - 20};
         ctx.beginPath();
         ctx.lineTo(point.x, point.y);
         ctx.lineTo(point.x, -this.height + point.y);
         ctx.lineTo(this.width + point.x, -this.height + point.y);
         ctx.lineTo(this.width + point.x, point.y);
 
-        ctx.fillStyle = "black";
+        ctx.fillStyle = "white";
         ctx.fill();
 
         ctx.beginPath();

@@ -5,7 +5,7 @@ class BreakableTerrain extends Terrain {
     colorStages = ['rgb(206 173 104)', 'rgb(171 145 88)', 'rgb(108 92 59)']
 
     constructor(width, height, name = 'Terrain') {
-        super(width, height, 'rgb(141 119 72)', name);
+        super(width, height, 'rgb(206 173 104)', name);
     }
 
     start() { super.start(); }
