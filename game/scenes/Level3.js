@@ -15,7 +15,7 @@ class Level3 extends Scene {
         this.instantiate(new Terrain(200, 500, 'black', 'wall'), {x: 400, y: 550});
         this.instantiate(new MovingTerrain(300, 50, 'black', 2, [window.innerWidth - 520, 600]), {x: 600, y: 550});
         this.instantiate(new Terrain(200, 20, 'black', 'goal platform'), {x: window.innerWidth - 220, y: 550});
-        //this.instantiate(new Goal(20, 100, new Level4()), {x: window.innerWidth - 40, y: 450});
+        this.instantiate(new Goal(20, 100, new Level4()), {x: window.innerWidth - 40, y: 450});
 
         this.instantiate(new Enemy([window.innerWidth - 80, 600.1]), {x: 700, y: window.innerHeight - 150});
         this.instantiate(new Player(), {x: 100, y: 650});

@@ -16,6 +16,8 @@ class SceneManager {
             this.nextScene = new Level2();
         } else if (Input.keysDown.includes('Digit3')) {
             this.nextScene = new Level3();
+        } else if (Input.keysDown.includes('Digit4')) {
+            this.nextScene = new Level4();
         }
 
         if(SceneManager.nextScene) {

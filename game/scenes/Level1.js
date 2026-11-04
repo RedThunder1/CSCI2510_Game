@@ -13,6 +13,7 @@ class Level1 extends Scene {
         this.instantiate(new Terrain(20, 300, 'black', 'ceiling'), {x: 100, y: 0});
         this.instantiate(new Terrain(20, 300, 'black', 'ceiling'), {x: 180, y: 0});
         this.instantiate(new Terrain(50, 50, 'black'), {x: 600, y: window.innerHeight - 150});
+        this.instantiate(new Terrain(50, 80, 'black'), {x: 1200, y: window.innerHeight - 180});
 
         this.instantiate(new Player(), {x: 125, y: 50});
 
