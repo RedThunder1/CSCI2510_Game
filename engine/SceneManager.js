@@ -9,7 +9,6 @@ class SceneManager {
 
     static update(){
         //dev purposes
-        if (Input.keysDown.length > 0) console.log(Input.keysDown);
         if (Input.keysDown.includes('Digit1')) {
             this.nextScene = new Level1();
         } else if (Input.keysDown.includes('Digit2')) {

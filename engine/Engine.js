@@ -4,6 +4,16 @@ class Engine {
 
     static layers = ["default", "UI"]
 
+    /*TODO:
+     * Implement fixedUpdate / deltaTime to physics to keep accuracy between computers
+     * add levels (minimum of 10)
+     *  - base of level 4 is added but needs refined
+     *  - levels 1 - 3 can be refined to make gameplay better
+     * Add other enemies / hazards
+     *  - Melee enemy
+     *  - explosions / aoe effects
+     */
+
     static start(nextScene, settings) {
         Engine.canvas = document.getElementById("canv");
         Engine.ctx = Engine.canvas.getContext("2d");

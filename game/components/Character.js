@@ -13,7 +13,7 @@ class Character extends GameObject {
         width = 50,
         height = 50,
         health = 100,
-        speed = 5,
+        speed = 100,
         accel = 0.1) {
         super();
         this.width = width;
@@ -27,11 +27,13 @@ class Character extends GameObject {
     }
 
     update() {
+        super.update();
+
         if (this.health <= 0) {
             SceneManager.currentScene.destroy(this);
         }
 
-        this.position.y += this.gravity;
+        this.position.y += this.gravity * Time.deltaTime;
 
         this.collider.transform.position = this.position;
         const collisionData = Physics.isBoxColliding(this.collider);

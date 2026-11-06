@@ -1,10 +1,10 @@
 class Player extends Character {
     sprintMultiplier = 1.5; //Sprint multiplier when this holds shift
-    jumpPower = 1.5; //Power of this jump
+    jumpPower = 1; //Power of this jump
     jumping = false; //Is this currently jumping
     jumpingTimer = 20; //Duration of jumping
 
-    bulletDelay = 10;
+    bulletDelay = 0.5;
     shooting = false;
     right = true; //Is the player facing right, used for shooting direction
     
@@ -31,14 +31,16 @@ class Player extends Character {
     }
 
     update() {
+        super.update();
+
         this.move();
         this.jump();
 
         if (this.bulletDelay <= 0) {
-            this.bulletDelay = 10;
+            this.bulletDelay = 0.5;
             this.shooting = false;
         } else if (this.shooting) {
-            this.bulletDelay -= 1;
+            this.bulletDelay -= Time.deltaTime;
         }
 
         if (Input.keysDown.includes('KeyF') && !this.shooting) {
@@ -49,8 +51,6 @@ class Player extends Character {
         if (this.health <= 0) {
             SceneManager.nextScene = new GameOverScene(SceneManager.currentScene);
         }
-
-        super.update();
     }
 
     move() {
@@ -59,18 +59,18 @@ class Player extends Character {
         this.prevPosition = this.position;
 
         if (Input.keysDown.includes('KeyA')) {
-            if (this.accel < 1) this.accel += .1;
-            this.position.x -= (this.speed * this.accel * sprint);
+            if (this.accel < 1) this.accel += 1.5 * Time.deltaTime;
+            this.position.x -= (this.speed * this.accel * sprint * Time.deltaTime);
             this.right = false;
         }
         else if (Input.keysDown.includes('KeyD')) {
-            if (this.accel < 1) this.accel += .1;
-            this.position.x += (this.speed * this.accel * sprint);
+            if (this.accel < 1) this.accel += 1.5 * Time.deltaTime;
+            this.position.x += (this.speed * this.accel * sprint * Time.deltaTime);
             this.right = true;
         }
         else {
             if (this.accel > 0.1) {
-                this.accel -= 0.1;
+                this.accel -= 1.5;
             } else if (this.accel <= 0.1) {
                 this.accel = 0.1
             }
