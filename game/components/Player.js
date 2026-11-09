@@ -2,7 +2,6 @@ class Player extends Character {
     sprintMultiplier = 1.5; //Sprint multiplier when this holds shift
     jumpPower = 1000; //Power of this jump
     jumping = false; //Is this currently jumping
-    jumpingTimer = 5; //Duration of jumping
     jumpingAccel = 1;
 
     bulletDelay = 0.5;
@@ -70,7 +69,7 @@ class Player extends Character {
         }
         else {
             if (this.accel > 0.1) {
-                this.accel -= 5;
+                this.accel -= 5 * Time.deltaTime;
             } else if (this.accel < 0.1) {
                 this.accel = 0.1
             }
