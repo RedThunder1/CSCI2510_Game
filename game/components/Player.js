@@ -2,7 +2,7 @@ class Player extends Character {
     sprintMultiplier = 1.5; //Sprint multiplier when this holds shift
     jumpPower = 1; //Power of this jump
     jumping = false; //Is this currently jumping
-    jumpingTimer = 20; //Duration of jumping
+    jumpingTimer = 5; //Duration of jumping
 
     bulletDelay = 0.5;
     shooting = false;
@@ -80,12 +80,12 @@ class Player extends Character {
     jump() {
         if ((this.jumping || (Input.keysDown.includes('Space') && !this.jumping && this.grounded))) {
             this.jumping = true;
-            this.jumpingTimer--;
+            this.jumpingTimer -= Time.deltaTime;
             if (this.jumpingTimer > 0) {
                 this.position.y -= this.jumpPower * this.jumpingTimer;
             } else {
                 this.jumping = false;
-                this.jumpingTimer = 20;
+                this.jumpingTimer = 5;
             }
         }
     }
