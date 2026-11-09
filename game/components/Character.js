@@ -13,7 +13,7 @@ class Character extends GameObject {
         width = 50,
         height = 50,
         health = 100,
-        speed = 100,
+        speed = 250,
         accel = 0.1) {
         super();
         this.width = width;

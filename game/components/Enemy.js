@@ -64,10 +64,10 @@ class Enemy extends Character {
         this.right = direction > 0;
 
         if (direction > 0 && this.position.x < this.currentPoint) {
-            if (this.accel < 1) this.accel += 1.5 * Time.deltaTime;
+            if (this.accel < 1) this.accel += 5 * Time.deltaTime;
             this.position.x += (this.speed * this.accel * Time.deltaTime);
         } else if (direction < 0 && this.position.x > this.currentPoint) {
-            if (this.accel < 1) this.accel += 1.5 * Time.deltaTime;
+            if (this.accel < 1) this.accel += 5 * Time.deltaTime;
             this.position.x -= (this.speed * this.accel * Time.deltaTime);
         }
 

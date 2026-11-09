@@ -1,8 +1,9 @@
 class Player extends Character {
     sprintMultiplier = 1.5; //Sprint multiplier when this holds shift
-    jumpPower = 1; //Power of this jump
+    jumpPower = 1000; //Power of this jump
     jumping = false; //Is this currently jumping
     jumpingTimer = 5; //Duration of jumping
+    jumpingAccel = 1;
 
     bulletDelay = 0.5;
     shooting = false;
@@ -31,8 +32,6 @@ class Player extends Character {
     }
 
     update() {
-        super.update();
-
         this.move();
         this.jump();
 
@@ -51,6 +50,7 @@ class Player extends Character {
         if (this.health <= 0) {
             SceneManager.nextScene = new GameOverScene(SceneManager.currentScene);
         }
+        super.update();
     }
 
     move() {
@@ -59,19 +59,19 @@ class Player extends Character {
         this.prevPosition = this.position;
 
         if (Input.keysDown.includes('KeyA')) {
-            if (this.accel < 1) this.accel += 1.5 * Time.deltaTime;
+            if (this.accel < 1) this.accel += 5 * Time.deltaTime;
             this.position.x -= (this.speed * this.accel * sprint * Time.deltaTime);
             this.right = false;
         }
         else if (Input.keysDown.includes('KeyD')) {
-            if (this.accel < 1) this.accel += 1.5 * Time.deltaTime;
+            if (this.accel < 1) this.accel += 5 * Time.deltaTime;
             this.position.x += (this.speed * this.accel * sprint * Time.deltaTime);
             this.right = true;
         }
         else {
             if (this.accel > 0.1) {
-                this.accel -= 1.5;
-            } else if (this.accel <= 0.1) {
+                this.accel -= 5;
+            } else if (this.accel < 0.1) {
                 this.accel = 0.1
             }
         }
@@ -80,12 +80,15 @@ class Player extends Character {
     jump() {
         if ((this.jumping || (Input.keysDown.includes('Space') && !this.jumping && this.grounded))) {
             this.jumping = true;
-            this.jumpingTimer -= Time.deltaTime;
-            if (this.jumpingTimer > 0) {
-                this.position.y -= this.jumpPower * this.jumpingTimer;
-            } else {
+
+            if (this.jumpingAccel > 0) {
+                this.position.y -= this.jumpPower * this.jumpingAccel * Time.deltaTime;
+                this.jumpingAccel -= Time.deltaTime;
+            }
+
+            if (this.grounded && this.jumpingAccel <= 0) {
+                this.jumpingAccel = 1;
                 this.jumping = false;
-                this.jumpingTimer = 5;
             }
         }
     }

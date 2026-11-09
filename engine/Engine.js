@@ -27,6 +27,13 @@ class Engine {
             Engine.layers = settings.layers
         }
 
+        Time.getRefreshRate().then(value => {
+            Time.deltaTime = 1 / value
+            console.log(Time.deltaTime)
+        })
+
+        console.log(Time.deltaTime);
+
         requestAnimationFrame(Engine.gameLoop);
     }
 

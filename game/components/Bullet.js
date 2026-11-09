@@ -1,6 +1,6 @@
 class Bullet extends GameObject{
     direction
-    speed = 500;
+    speed = 1000;
     lifeTime = 10;
     width = 20;
     height = 10;

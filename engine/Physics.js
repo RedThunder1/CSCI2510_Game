@@ -1,6 +1,6 @@
 class Physics {
     static colliders = [];
-    static gravity = 200;
+    static gravity = 500;
 
     static addCollider(collider) {
         this.colliders.push(collider);
