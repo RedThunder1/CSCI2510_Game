@@ -1,7 +1,7 @@
 class Bullet extends GameObject{
     direction
-    speed = 15;
-    lifeTime = 100;
+    speed = 500;
+    lifeTime = 10;
     width = 20;
     height = 10;
     collider;
@@ -22,9 +22,9 @@ class Bullet extends GameObject{
     }
 
     update() {
-        this.lifeTime--;
+        this.lifeTime -= Time.deltaTime;
 
-        this.position.x += this.speed * this.direction;
+        this.position.x += this.speed * this.direction * Time.deltaTime;
 
         if (this.lifeTime < 0) {
             SceneManager.currentScene.destroy(this);

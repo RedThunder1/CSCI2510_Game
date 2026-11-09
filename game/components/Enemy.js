@@ -4,7 +4,7 @@ class Enemy extends Character {
     currentPoint;
     currentIndex = 0;
 
-    bulletDelay = 50;
+    bulletDelay = 2;
     shooting = false;
     right = true;
 
@@ -13,7 +13,7 @@ class Enemy extends Character {
         width = 50,
         height = 50,
         health = 100,
-        speed = 2,
+        speed = 80,
         accel = 0.1) {
         super();
         this.name = "enemy"
@@ -36,10 +36,10 @@ class Enemy extends Character {
         this.move();
 
         if (this.bulletDelay <= 0) {
-            this.bulletDelay = 50;
+            this.bulletDelay = 2;
             this.shooting = false;
         } else if (this.shooting) {
-            this.bulletDelay -= 1;
+            this.bulletDelay -= Time.deltaTime;
         }
 
         if (!this.shooting) {
@@ -64,11 +64,11 @@ class Enemy extends Character {
         this.right = direction > 0;
 
         if (direction > 0 && this.position.x < this.currentPoint) {
-            if (this.accel < 1) this.accel += .1;
-            this.position.x += (this.speed * this.accel);
+            if (this.accel < 1) this.accel += 1.5 * Time.deltaTime;
+            this.position.x += (this.speed * this.accel * Time.deltaTime);
         } else if (direction < 0 && this.position.x > this.currentPoint) {
-            if (this.accel < 1) this.accel += .1;
-            this.position.x -= (this.speed * this.accel);
+            if (this.accel < 1) this.accel += 1.5 * Time.deltaTime;
+            this.position.x -= (this.speed * this.accel * Time.deltaTime);
         }
 
         if (direction > 0 && this.position.x > this.currentPoint || direction < 0 && this.position.x < this.currentPoint) {

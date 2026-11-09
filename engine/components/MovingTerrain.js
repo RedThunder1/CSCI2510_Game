@@ -20,9 +20,9 @@ class MovingTerrain extends Terrain {
         const direction = this.position.x < this.currentPoint ? 1 : -1;
 
         if (direction > 0 && this.position.x < this.currentPoint) {
-            this.position.x += this.speed;
+            this.position.x += this.speed * Time.deltaTime;
         } else if (direction < 0 && this.position.x > this.currentPoint) {
-            this.position.x -= this.speed;
+            this.position.x -= this.speed * Time.deltaTime;
         }
 
         if (direction > 0 && this.position.x >= this.currentPoint || direction < 0 && this.position.x <= this.currentPoint) {
