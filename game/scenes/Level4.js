@@ -17,6 +17,8 @@ class Level4 extends Scene {
         this.instantiate(new Terrain(window.innerWidth - 150, 20, 'black', 'shelf'), {x: 20, y: window.innerHeight - 700});
         this.instantiate(new Terrain(100, 20, 'black', 'shelf'), {x: window.innerWidth - 120, y: window.innerHeight - 600});
 
+        this.instantiate(new Goal(20, 100, new Level5()), {x: 20, y: window.innerHeight - 800})
+
         this.instantiate(new BreakableTerrain(50, 50, ), {x: 100, y: window.innerHeight - 150});
 
         this.instantiate(new Player(), {x: 20, y: window.innerHeight - 160});

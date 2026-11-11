@@ -21,6 +21,21 @@ class Scene {
         return gameObject
     }
 
+    instantiateMultiple(instantiateObjects) {
+        instantiateObjects.forEach(go => {
+            this.gameObjects.push(go.gameObject);
+            go.gameObject.transform.position = go.position;
+            go.gameObject.transform.rotation = go.rotation ? go.rotation : 0;
+
+            if (go.components) {
+                go.components.forEach(component => {
+                    go.gameObject.addComponent(component);
+                });
+            }
+        })
+
+    }
+
     start() {
         for (const gameObject of this.gameObjects) {
             gameObject.start();

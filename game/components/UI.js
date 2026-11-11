@@ -2,8 +2,10 @@ class UI extends GameObject {
     //health bar
     width = 200;
     height = 50;
-    //position = {x: 20, y: this.height + 20};
+
+    maxHealth = 100;
     health = 100;
+    healthWidth = 1;
 
     gameOver = false;
 
@@ -14,6 +16,8 @@ class UI extends GameObject {
     update() {
         let player = SceneManager.currentScene.get('Player')
         this.health = !player ? 0 : player.health;
+
+        this.healthWidth = this.health / this.maxHealth;
     }
 
     draw(ctx) {
@@ -34,8 +38,8 @@ class UI extends GameObject {
         ctx.beginPath();
         ctx.lineTo(point.x, point.y);
         ctx.lineTo(point.x, -this.height + point.y);
-        ctx.lineTo(point.x + (this.health * 2), -this.height + point.y);
-        ctx.lineTo(point.x + (this.health * 2), point.y);
+        ctx.lineTo(point.x + (this.width * this.healthWidth), -this.height + point.y);
+        ctx.lineTo(point.x + (this.width * this.healthWidth), point.y);
 
         ctx.fillStyle = "green";
         ctx.fill();

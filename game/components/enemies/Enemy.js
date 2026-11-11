@@ -12,7 +12,7 @@ class Enemy extends Character {
         patrolPoints = [],
         width = 50,
         height = 50,
-        health = 100,
+        health = 50,
         speed = 80,
         accel = 0.1) {
         super();

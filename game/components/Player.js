@@ -1,8 +1,8 @@
 class Player extends Character {
     sprintMultiplier = 1.5; //Sprint multiplier when this holds shift
-    jumpPower = 1000; //Power of this jump
+    jumpPower = 2500; //Power of this jump
     jumping = false; //Is this currently jumping
-    jumpingAccel = 1;
+    jumpingAccel = 0.5;
 
     bulletDelay = 0.5;
     shooting = false;
@@ -86,7 +86,7 @@ class Player extends Character {
             }
 
             if (this.grounded && this.jumpingAccel <= 0) {
-                this.jumpingAccel = 1;
+                this.jumpingAccel = 0.5;
                 this.jumping = false;
             }
         }

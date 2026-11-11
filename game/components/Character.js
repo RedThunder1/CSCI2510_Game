@@ -14,13 +14,15 @@ class Character extends GameObject {
         height = 50,
         health = 100,
         speed = 250,
-        accel = 0.1) {
+        accel = 0.1,
+        name = 'Character') {
         super();
         this.width = width;
         this.height = height;
         this.health = health;
         this.speed = speed;
         this.accel = accel;
+        this.name = name;
 
         this.collider = new BoxCollider(width, height);
         this.addComponent(this.collider);

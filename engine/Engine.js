@@ -21,7 +21,7 @@ class Engine {
         addEventListener("keydown", Input.keyDown);
         addEventListener("keyup", Input.keyUp);
 
-        SceneManager.nextScene = nextScene;
+        SceneManager.start(SceneManager.saveScene);
 
         if(settings){
             Engine.layers = settings.layers
