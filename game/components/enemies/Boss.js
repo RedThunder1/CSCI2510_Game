@@ -72,4 +72,9 @@ class Boss extends Character {
         ctx.fillStyle = "green";
         ctx.fill();
     }
+
+    destroy() {
+        SceneManager.currentScene.instantiate(new Goal(20, 100, new Level1()), {x: 20, y: window.innerHeight - 200});
+        super.destroy();
+    }
 }
