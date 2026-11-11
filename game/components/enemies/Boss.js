@@ -55,7 +55,6 @@ class Boss extends Character {
             SceneManager.currentScene.instantiate(new Bullet('enemy', 1), {x: this.position.x + this.width/2, y: this.player ? this.player.position.y + 30: 50});
             this.shooting = true;
         }
-        console.log(this.burstDuration, this.burstTimer);
 
         if (this.burstTimer <= 0 && this.burstDuration <= 0) {
             this.burstTimer = 5;
